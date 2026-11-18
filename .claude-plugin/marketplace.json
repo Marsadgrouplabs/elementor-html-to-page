@@ -1,0 +1,15 @@
+{
+  "name": "marsad-elementor-html-to-page",
+  "description": "Build a reference HTML page as a draft Elementor page through the Elementor MCP.",
+  "owner": {
+    "name": "Marsad Labs",
+    "url": "https://labs.marsadgroup.co"
+  },
+  "plugins": [
+    {
+      "name": "elementor-html-to-page",
+      "source": "./",
+      "description": "Build a reference HTML page as a draft Elementor page through the Elementor MCP."
+    }
+  ]
+}
