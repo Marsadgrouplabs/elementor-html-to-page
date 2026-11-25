@@ -12,6 +12,15 @@ Goal: about 95% visual match, as few tokens as possible. Most tokens are lost to
 - Keep the page a Draft. Never publish or delete without approval.
 - At the end, list what is left for the user: form, anchors, SEO, real images.
 
+## Before building: online or local? (heavy pages only)
+After unpacking the reference (step 0.1), size the page: rough custom CSS size, scroll-driven animations (view timelines, scroll JS), element count.
+- **Light page** (little CSS, no scroll animations): build online right away. Don't ask, don't mention the local option.
+- **Heavy page** (CSS above ~15KB, OR scroll animations, OR 400+ elements): stop and let the user choose, in their language, using the wording and time table in the `elementor-local-first` skill (`references/setup-guide.md` › "The choice"). Explain plainly: what the local route is, what it changes (fast fix rounds, no 503s, one upload at the end), what it costs (one-time setup, and the first heavy page saves little), and that the numbers are estimates unless `references/timings.md` has measured ones. If `.local-first.json` already exists for this site, say setup is already done. Ask with AskUserQuestion: "On my machine first" / "Online only". Then follow their choice and don't ask again in that session.
+- Never offer this for blog posts, small edits or light pages.
+- **`elementor-local-first` is not installed?** Don't offer the choice. Build online, and say in one line that heavy pages go faster with that companion skill if they add it.
+
+If the user picks online for a heavy page: test every fix in the browser first (CSSOM or an injected style), then save the CSS in ONE call. Don't resend the whole stylesheet per fix.
+
 ## 0. Prepare (once)
 1. If the file is a bundle (`__bundler/template`), unpack the template JSON with Python (`python -I`), strip the `@font-face` blocks, and read it. Serve a static copy on localhost as the reference.
 2. Probe the MCP in one go: `list-resources`, `read-resource` for global-variables and global-classes, `list-components`. If the schema tools (`get-widget-schema`, `list-widget-schemas`) throw errors, do not retry them. Use `build-composition` with `dry_run` instead.
